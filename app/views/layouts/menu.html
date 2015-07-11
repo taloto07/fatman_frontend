@@ -1,0 +1,56 @@
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref='app'>FATMAN.</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class='navbar-form navbar-left form-inline'>
+                <div class='input-group'>
+                    <input type='text' class='form-control' placeholder="Search..." ng-model="keyword" ng-keyup="$event.keyCode == 13 ? search() : null" />
+                </div>    
+                <div class='input-group'>
+                    <select class='form-control' ng-model="location" ng-options="location.city for location in locations">
+                        <option value=''>-- choose location --</option>
+                    </select>
+                </div>
+                <!-- <span style='color:white'>{{category}}</span>
+                <span style='color:white'>{{sort}}</span> -->
+            </form>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active"><a ui-sref="app.about">ABOUT</a></li>
+                <li ui-sref-active="active"><a ui-sref="app.contact">CONTACT</a></li>
+                <li ui-sref-active="active" ng-show="!showMenu"><a ui-sref="app.login">LOGIN</a></li>
+                <li class='dropdown' ng-show="showMenu">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">{{userMenu.fname.toUpperCase()}} {{userMenu.lname.toUpperCase()}}<b class="caret"></b></a>
+                    <ul class='dropdown-menu'>
+                        <li ui-sref-active='active'><a ui-sref="app.post">POST</a></li>
+                        <li ui-sref-active='active'><a ui-sref="app.setting">SETTING</a></li>
+                        <li ui-sref-active='active'><a ui-sref="app.logout">LOGOUT</a></li>  
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div id="parent" style="position:fixed;top:50%;left:-145px;z-index:999;">
+    <div id="totalUserOnline" style="position:relative;">
+        <span class="label label-info" style="font-size:18px;" >
+            <span id="totalUserOnlineContent" style="position:relative;">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{totalUserOnline}} online users
+            </span>
+            <span id="sign" class="glyphicon glyphicon-chevron-right"></span>
+        </span>
+    </div>
+</div>
+
+
+

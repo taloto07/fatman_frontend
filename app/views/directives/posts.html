@@ -1,0 +1,13 @@
+<div masonry="{columnWidth: 300, isAnimated: true, gutter: 10, isFitWidth: true}" class="container"  style="padding: 0px">
+	<div class='masonry-brick post' ng-repeat="post in data">
+		<div class="post-wrapper">
+			<a ui-sref="app.display({id:post._id})">
+				<img ng-src="{{REMOTE_SERVER}}{{post.pictures_s[0]}}"/>
+			</a>
+		</div>
+		<div class="title">{{post.title}}</div>
+		<div class="price">{{post.price | currency}}</div>
+		<div class="location left-align">{{post.location.city.toUpperCase()}}</div>
+		<div class="user left-align">{{post.user.fname.toUpperCase()}} {{post.user.lname.toUpperCase()}}</div>
+	</div>	
+</div>

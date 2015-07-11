@@ -1,0 +1,49 @@
+<!-- *****************************************************************************************************************
+ BLUE WRAP
+ ***************************************************************************************************************** -->
+<div id="blue">
+    <div class="container">
+		<div class="row">
+			<h3>Login.</h3>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+
+<div class="container mtb">
+	<form name='loginForm' ng-submit="submitForm(loginForm.$valid)" novalidate class="col-sm-offset-2 col-sm-6">
+
+		<div class="form-group alert alert-danger" ng-show='err'>
+			<span ng-bind='err.message'>?</span>
+		</div>
+
+		<div class="form-group">
+			<ul class='alert alert-danger' ng-show="loginForm.$invalid && loginForm.$dirty">
+				<li ng-show="loginForm.email.$dirty && loginForm.email.$error.required">
+					Email is required!
+				</li>
+				<li ng-show="!loginForm.email.$error.required && loginForm.email.$dirty && loginForm.email.$invalid">
+					Email is invalid!
+				</li>
+				<li ng-show="loginForm.password.$dirty && loginForm.password.$error.required">
+					Password is required!
+				</li>
+			</ul>
+		</div>
+
+		<div class="form-group">
+			<input name="email" type="email" class="form-control" placeholder="Email" ng-model="user.email" required>
+		</div>
+
+		<div class="form-group">
+			<input name="password" type="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+		</div>
+
+		<div class="form-group">
+			<button class="btn btn-primary" ng-disabled='loginForm.$invalid'>Log in</button>
+		</div>
+
+		<div class="form-group">
+			No account yet! <a ui-sref="app.signup">sign up</a> here
+		</div>
+	</form>
+</div>

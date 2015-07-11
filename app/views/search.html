@@ -1,0 +1,37 @@
+<div id="blue">
+    <div class="container">
+		<div class="row">
+			<h3>Search.</h3>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+
+<div class='container'>
+	
+	<form class='form-inline'>
+		<div class="form-group">
+			<select ng-model='category' ng-options="category.type group by category.category.type for category in categories" class="form-control" ng-change="categoryChange()">
+				<option value="">
+					Category
+				</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<select ng-model='sort' ng-change='sortChange()' class="form-control" ng-options="sort.label for sort in sorts">
+				<option value="">
+					Sort
+				</option>
+			</select>
+		</div>
+	</form>
+	
+</div>
+
+<div class="post-container">
+    
+    <div post-directive data="posts" remote-server="{{REMOTE_SERVER}}"></div>
+    
+    <br/><br/>
+	<button ng-click='load()' class='btn btn-primary btn-lg' ng-disabled='noMorePost' ng-bind='btn_loading_label'></button>
+ </div>
+

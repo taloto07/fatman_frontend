@@ -1,0 +1,118 @@
+<div id="blue">
+    <div class="container">
+		<div class="row">
+			<h3>Signup.</h3>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+
+<div class="container mtb">
+
+<form name='signupForm' ng-submit="submitForm()" novalidate class="col-sm-offset-3 col-sm-6">
+	
+	<ul class='form-group alert alert-danger' ng-show='err'>
+		<li>
+			{{err.invalid.email.msg}} ({{err.invalid.email.value}})
+		</li>
+	</ul>
+
+	<div class="form-group">
+		<ul class='alert alert-danger' ng-show="signupForm.$invalid && signupForm.$dirty || emailNotMatched || passwordNotMatched">
+			<li ng-show="signupForm.fname.$touched && signupForm.fname.$error.required">
+				<strong>First name is required!</strong>
+			</li>
+			<li ng-show="signupForm.fname.$touched && signupForm.fname.$error.pattern">
+				<strong>First name must be alphanumeric only!!</strong>
+			</li>
+
+			<li ng-show="signupForm.lname.$touched && signupForm.lname.$error.required">
+				<strong>Last name is required!</strong>
+			</li>	
+			<li ng-show="signupForm.lname.$touched && signupForm.lname.$error.pattern">
+				<strong>Last name must be alphanumeric only!!</strong>
+			</li>
+
+			<li ng-show="signupForm.email.$touched && signupForm.email.$error.required">
+				<strong>Email is required!</strong>
+			</li>
+			<li ng-show="!signupForm.email.$error.required && signupForm.email.$touched && signupForm.email.$invalid">
+				<strong>Email is invalid!</strong>
+			</li>
+			<li ng-show="!signupForm.email.$error.required && signupForm.email.$touched && emailExisted">
+				<strong>{{tempEmail}} is taken!</strong>
+			</li>
+
+			<li ng-show="signupForm.confirmEmail.$touched && signupForm.confirmEmail.$error.required">
+				<strong>Confirm email is required!</strong>
+			</li>
+			<li ng-show="!signupForm.confirmEmail.$error.required && signupForm.confirmEmail.$touched && signupForm.confirmEmail.$invalid">
+				<strong>Confirm email is invalid!</strong>
+			</li>
+			<li ng-show="emailNotMatched">
+				<strong>Email doesn't matched!</strong>
+			</li>
+			
+			<li ng-show="signupForm.password.$touched && signupForm.password.$error.required">
+				<strong>Password is required!</strong>
+			</li>
+			<li ng-show="signupForm.password.$touched && signupForm.password.$error.minlength || signupForm.password.$error.maxlength">
+				<strong>Password must be between 6 and 20!</strong>
+			</li>
+
+			<li ng-show="signupForm.confirmPassword.$touched && signupForm.confirmPassword.$error.required">
+				<strong>Confirm password is required!</strong>
+			</li>
+			<li ng-show="passwordNotMatched">
+				<strong>Password doesn't matched!</strong>
+			</li>
+		</ul>
+	</div>
+
+	<div class="form-group">
+		<input ng-pattern="/^[a-zA-Z]+$/" name="fname" type="text" class="form-control" placeholder="First Name" ng-model="user.fname" required>
+	</div>
+
+	<div class="form-group">
+		<input ng-pattern="/^[a-zA-Z]+$/" name="lname" type="text" class="form-control" placeholder="Last Name" ng-model="user.lname" required>
+	</div>
+
+	<div class="form-group">
+		<input name="email" type="email" class="form-control" placeholder="Email" ng-model="user.email" required ng-blur="checkEmail()">
+	</div>
+
+	<div class="form-group">
+		<input name="confirmEmail" type="email" class="form-control" placeholder="Confirm Email" ng-model="user.confirmEmail" ng-blur='matchEmail()' required>
+	</div>
+
+	<div class="form-group">
+		<input minlength='6' maxlength='20' name="password" type="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+	</div>
+
+	<div class="form-group">
+		<input name="confirmPassword" type="password" class="form-control" placeholder="Confirm Password" ng-model="user.confirmPassword" ng-change='matchPassword()' required>
+	</div>
+
+	<div class="form-group">
+		<button class="btn btn-primary" ng-disabled='signupForm.$invalid || passwordNotMatched || emailNotMatched'>Sign Up</button>
+	</div>
+
+	<div class="form-group">
+		Already have account! <a ui-sref="app.login">log in</a> here
+	</div>
+</div>
+
+<!-- success modal -->
+<div class="modal fade" id="signupSuccessModal" tabindex="-1" role="dialog" aria-labelledly="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		
+		<div class="modal-content">
+			<div class="modal-header">
+		        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+		        <h4 class="modal-title" id="signupSuccessModal">Sign Up</h4>
+		    </div>
+			<div class="modal-body">
+				Signup Successfully!
+			</div>
+		</div>
+	</div>
+</div>

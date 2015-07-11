@@ -1,0 +1,91 @@
+<table class="table table-striped">
+	<tr>
+		<th>Image</th>
+		<th>Title</th>
+		<th>Category</th>
+		<th>Description</th>
+		<th>Price</th>
+		<th>Condition</th>
+		<th>Location</th>
+		<th>View</th>
+		<th>Date</th>
+		<th>Expiration</th>
+		<th>Options</th>
+	</tr>
+	<tr ng-repeat="post in posts">
+		<td><a ui-sref="app.display({id:post._id})"><img ng-src="{{REMOTE_SERVER}}{{post.pictures_s[0]}}" style="width:50px;height:50px" /></a></td>
+		<td>{{post.title}}</td>
+		<td>{{post.sub_category.type}}</td>
+		<td>{{post.description}}</td>
+		<td>{{post.price | currency}}</td>
+		<td>{{post.condition}}</td>
+		<td>{{post.location.city}}</td>
+		<td>{{post.view}}</td>
+		<td>{{post.post_date | date}}</td>
+		<td>{{post.expiration_date | date}}</td>
+		<td><a href="" ng-click="editClick(post)">Edit</a></td>
+	</tr>
+</table>
+
+<!-- edit modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledly="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		
+		<div class="modal-content">
+			<div class="modal-header">
+		        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+		        <h4 class="modal-title" id="editModal">{{editPost.title | uppercase}}</h4>
+		    </div>
+			<div class="modal-body">
+				<form ng-submit="editFormSubmit()" novalidate name="editForm">
+					<div class="form-group">
+					    <label for="title">Title</label>
+					    <input type="text" class="form-control" id="title" placeholder="Title" ng-model="editPost.title" required>
+				  	</div>
+				  	<div class="form-group">
+					    <label for="description">Description</label>
+					    <textarea class="form-control" id="description" ng-model="editPost.description" rows="3" style="resize:none" required>
+					    </textarea>
+				  	</div>
+				  	<div class="form-group">
+					    <label for="category">Category</label>
+					    <select class="form-control" ng-model="editPost.sub_category" ng-options="(category.type | uppercase) for category in categories | orderBy: 'type'" required></select>
+				  	</div>
+				  	<div class="form-group">
+					    <label for="title">Price</label>
+					    <input type="number" class="form-control" id="price" placeholder="Price" ng-model="editPost.price" required>
+				  	</div>
+				  	<div class="form-group">
+					    <label for="category">Condition</label>
+					    <select class="form-control" ng-model="editPost.condition" ng-options="condition.label for condition in conditions" required></select>
+				  	</div>
+				  	<div class="form-group">
+					    <label for="location">Location</label>
+					    <select class="form-control" ng-model="editPost.location" ng-options="location.city for location in locations" required></select>
+				  	</div>
+				  	<div class="form-group">
+					    <div><b>Pictures</b></div>
+					    <span ng-repeat="picture in editPost.pictures_s track by $index" style="position:relative;">
+					    	<img ng-src="{{REMOTE_SERVER}}{{picture}}" style="width:100px;height:100px;margin:5px;"/>
+					    	<img ng-src="imgs/delete.png" width="30px" style="position:absolute;right:0;top:-1;cursor:pointer;" ng-click="deleteImage($index)" />
+					    </span>
+				  	</div>
+				  	<div class="form-group">
+				  		<label for="picture">Picture</label>
+				  		<div ngf-drop ngf-select ng-model="editPost.files" class="drop-box" 
+					        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+					        accept="image/*" ngf-max-size="5*1024*1024">Drop Images or click to upload</div>
+					    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+				  	</div>
+				  	<div class="form-group alert alert-danger" ng-show="fileError">
+				  		<b>Your total pictures must be between 1 and 12!</b>
+				  	</div>
+				  	<div class="form-group">
+						<img ng-repeat="file in editPost.files" ngf-src="file" class="thumnail" />
+					</div>
+				  	<input type="submit" class="btn btn-primary" value="Submit" ng-disabled="editForm.$invalid" />
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

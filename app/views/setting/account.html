@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+	<div class="panel-body">
+		<table ng-hide="edit" class="table table-striped">
+			<tr>
+				<td>First Name</td>
+				<td ng-bind="user.fname"></td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td ng-bind="user.lname"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td ng-bind="user.email"></td>
+			</tr>
+		</table>
+
+		<form ng-show="edit" ng-submit="submitForm()" name="editAccountForm">
+		<div class="form-group">
+			<label for="firstname">First Name</label>
+			<input type="text" class="form-control" id="firstname" placeholder="First Name" ng-model="editUser.fname">
+		</div>
+		<div class="form-group">
+			<label for="lastname">Last Name</label>
+			<input type="text" class="form-control" id="lastname" placeholder="Last Name" ng-model="editUser.lname">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" class="form-control" id="email" placeholder="Email" ng-model="editUser.email">
+		</div>
+			<button type="submit" class="btn btn-primary" ng-disabled="editAccountForm.$invalid">Submit</button>
+		</form>
+	</div>
+  	<div class="panel-footer">
+  		<a href="" ng-click="editClick(true)" ng-hide="edit">Edit</a>
+  		<a href="" ng-click="editClick(false)" ng-show="edit">Back</a> 
+  		| Change Password
+  	</div>
+</div>

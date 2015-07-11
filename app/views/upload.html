@@ -1,0 +1,88 @@
+<div id="blue">
+    <div class="container">
+		<div class="row">
+			<h3>Upload.</h3>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+
+<div class='container mtb'>
+	
+	<form name='uploadForm' ng-submit="submitForm(uploadForm)" novalidate class="col-sm-offset-2 col-sm-6">
+
+		<ul ng-show='err' class="alert alert-danger">
+			<li ng-repeat="e in err">{{e.msg}}</li>
+		</ul>
+
+		<ul ng-show='success' class="alert alert-success">
+			<li>{{success.message}}</li>
+		</ul>
+		
+		<ul class='alert alert-danger' ng-show="uploadForm.$dirty && uploadForm.$invalid">
+			<li ng-show='uploadForm.category.$error.required && uploadForm.category.$dirty'>Category is required!</li>
+			<li ng-show='uploadForm.subcategory.$error.required && uploadForm.subcategory.$dirty'>Sub category is required!</li>
+			<li ng-show='uploadForm.title.$error.required && uploadForm.title.$dirty'>Title is required!</li>
+			<li ng-show='uploadForm.condition.$error.required && uploadForm.condition.$dirty'>Condition is required!</li>
+			<li ng-show='uploadForm.price.$error.required && uploadForm.price.$dirty'>Price is required!</li>
+			<li ng-show='!uploadForm.price.$error.required && uploadForm.price.$invalid && uploadForm.price.$dirty'>Price is invalid!</li>
+			<li ng-show='uploadForm.description.$error.required && uploadForm.description.$dirty'>Desciption is required!</li>
+			<li ng-show='uploadForm.location.$error.required && uploadForm.location.$dirty'>Location is required!</li>
+		</ul>
+
+		<div class="form-group" ng-class="uploadForm.category.$error.required && uploadForm.category.$dirty ? 'has-error' : ''">
+			<select name="category" class="form-control" ng-model="upload.category" ng-options="(category.type | uppercase) for category in categories | orderBy: 'type'" ng-change="changeCategory()" required>
+				<option value=''>Category</option>
+			</select>
+		</div>
+
+		<div class="form-group" ng-class="uploadForm.subcategory.$error.required && uploadForm.subcategory.$dirty ? 'has-error' : ''">
+			<select name="subcategory" class="form-control" ng-model="upload.subcategory" ng-options="(subcategory.type | uppercase) for subcategory in subcategories | orderBy: 'type'" required>
+				<option value=''>Sub Category</option>
+			</select>
+		</div>
+		
+		<div class="form-group" ng-class="(uploadForm.title.$dirty && uploadForm.title.$error.required) ? 'has-error' : ''">
+			<input name="title" type="text" class="form-control" placeholder="Title" ng-model="upload.title" required>
+		</div>
+
+		<div class="form-group" ng-class="uploadForm.condition.$error.required && uploadForm.condition.$dirty ? 'has-error' : ''">
+			<select name='condition' class='form-control' ng-model='upload.condition' ng-options="(condition | uppercase) for condition in conditions" ng-change='changeCondition()' required>
+				<option value=''>Condition</option>
+			</select>
+		</div>
+
+		<div class="form-group" ng-class="(uploadForm.price.$error.required && uploadForm.price.$dirty) || (uploadForm.price.$dirty && uploadForm.price.$invalid) ? 'has-error' : ''">
+			<input name="price" type="number" class="form-control" placeholder="Price" ng-model="upload.price" required>
+		</div>
+
+		<div class="form-group" ng-class="uploadForm.description.$error.required && uploadForm.description.$dirty ? 'has-error' : ''">
+			<textarea name="description" type="text" class="form-control" ng-model="upload.description" placeholder="Description" rows="5" style="resize:none;" required>
+			</textarea>
+		</div>
+
+		<div class='form-group' ng-class="uploadForm.location.$error.required && uploadForm.location.$dirty ? 'has-error' : ''">
+			<select name='location' class='form-control' ng-model='upload.location' ng-options="(location.city | uppercase) for location in locations" required>
+				<option value=''>Location</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<div ngf-drop ngf-select ng-model="files" class="drop-box" 
+		        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+		        accept="image/*" ngf-max-size="5*1024*1024">Drop Images or click to upload</div>
+		    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+		    
+		</div>
+
+		<div class="form-group">
+			<img ng-repeat="file in files" ngf-src="file" class="thumnail" />
+			<div class="alert alert-danger" ng-show="pictureLimit">Images are limited between 1 and 12! {{files ? '( ' + files.length + ' )' : ''}}</div>
+		</div>
+		
+		<div class="form-group">
+			<button class="btn btn-primary" ng-disabled="uploadForm.$invalid">Upload</button>
+		</div>
+
+	</form>
+</div>
+

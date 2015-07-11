@@ -1,0 +1,20 @@
+<div id="blue">
+    <div class="container">
+		<div class="row">
+			<h3>Setting.</h3>
+		</div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /blue -->
+
+<div class="container mtb">
+	<div class="col-sm-2">
+		<div class="list-group">
+			<a ng-class="selectedSetting == 0 ? 'list-group-item active' : 'list-group-item'" ng-click="listClick(0)" ui-sref="app.setting.account" >Account</a>
+			<a ng-class="selectedSetting == 1 ? 'list-group-item active' : 'list-group-item'" ng-click="listClick(1)" ui-sref="app.setting.post">Posts</a>
+		</div>
+	</div>
+
+	<div class="col-sm-10">
+		<div ui-view></div>
+	</div>
+</div>

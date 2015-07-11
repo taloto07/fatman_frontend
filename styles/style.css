@@ -1,0 +1,137 @@
+/*
+ng file upload layout
+*/
+.thumnail{
+	height: 100px;
+	margin: 5px;
+	border: 1px solid #dddddd;
+	padding: 2px;
+
+}
+
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+
+.dragover {
+    border: 5px dashed blue;
+}
+
+/*
+Layout for recent post on index page
+*/
+.left-align{
+	text-align: left;
+}
+
+.post-container{
+	text-align: center;
+	/*background-color: #f8f8f8;*/
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.post-container > h2{
+	margin-bottom: 50px;
+}
+
+.post-container .post{
+	width: 300px;
+	/*padding: 5px;*/
+	border: 1px solid grey;
+	margin-bottom: 10px;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+
+}
+
+.post-container .post img{
+	padding: 5px;
+}
+
+.post-container .post .title{
+	padding: 5px;	
+}
+
+.post-container .post .price{
+	font-weight: bolder;
+	font-size: 24px;
+	padding: 5px;
+	color: green;
+}
+
+.post-container .post .location{
+	margin-top: 10px;
+	text-align: left;
+	padding: 5px;
+}
+
+.post-container .post .user{
+	text-align: left;
+	background-color: #f8f8f8;
+	padding: 5px;
+}
+
+#left-panel {
+	width: 40%;
+	border: 1px solid gray;
+	float: left;
+}
+
+#right-panel {
+	width: 60%;
+	border: 1px solid gray;
+	float: right;
+}
+
+#imgs {
+	text-align: center;
+}
+
+.small-img {
+	width: 100px;
+	padding: 10px;
+	border: 1px solid #dddddd;
+	margin-top: 5px;
+}
+
+.large-img-container{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border: 1px solid #dddddd;
+}
+
+.filter {
+	padding-bottom: 30px;
+}
+
+.search {
+	background-color: white;
+	padding-top: 0px;
+	/*color: grey;*/
+}
+
+.feature-category{
+	text-align: center;
+	padding-top: 100px;
+}
+
+.feature-category h2{
+	margin-bottom: 50px;
+}
+
+.feature-category .item{
+	width: 20%;
+	float: left;
+}
+
+.clearfix{
+	clear:both;
+}
