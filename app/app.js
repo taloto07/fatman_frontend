@@ -1,6 +1,7 @@
 angular.module('Fatman', ['ui.router', 'ngStorage', 'wu.masonry', 'ControllerModule', 'ServiceModule', 'DirectiveModule', 'ngFileUpload', 'btford.socket-io'])
 
-.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', function($urlRouterProvider, $stateProvider, $httpProvider){
+.config(['$urlRouterProvider', '$stateProvider', '$httpProvider', '$locationProvider', function($urlRouterProvider, $stateProvider, $httpProvider, $locationProvider){
+	$locationProvider.html5Mode(true);
 
 	// intercept request with token
 	$httpProvider.interceptors.push('TokenInterceptor');
